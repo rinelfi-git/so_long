@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   frame_close.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 16:42:12 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/04 21:17:26 by erijania         ###   ########.fr       */
+/*   Created: 2024/06/04 18:19:52 by erijania          #+#    #+#             */
+/*   Updated: 2024/06/04 21:17:29 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "window_manager.h"
-#include <X11/keysym.h>
+#include "mlx.h"
+#include <stdlib.h>
 
-int	handle_key(int keysim, t_frame *frame)
+int	frame_close(t_frame *self)
 {
-	if (keysim == XK_Escape)
-		return (frame_close(frame));
-	return (0);
-}
-
-int	main(void)
-{
-	t_frame	*frame;
-
-	frame = frame_create();
-	frame->display = mlx_new_window(frame->x, 800, 640, "So long");
-	mlx_hook(frame->display, ON_DESTROY, 0L, frame_close, frame);
-	mlx_key_hook(frame->display, handle_key, frame);
-	mlx_loop(frame->x);
+	if (!self || !self->x)
+		return (1);
+	if (self->display)
+		mlx_destroy_window(self->x, self->display);
+	mlx_destroy_display(self->x);
+	free(self->x);
+	free(self);
+	exit(0);
 	return (0);
 }
