@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:33:58 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/04 18:09:19 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/05 22:58:45 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,23 @@
 # define TILE_WIDTH 34
 # define TILE_HEIGHT 34
 
-struct s_environement
+typedef struct s_img	t_img;
+typedef struct s_player	t_player;
+struct s_img
 {
-	char	*img_path;
+	char	*path;
+	void	*img;
 };
-void	player_up(void);
-void	player_down(void);
-void	player_left(void);
-void	player_right(void);
-void	exit_open(void);
-void	exit_close(void);
+struct s_player
+{
+	t_img	*img_up[4];
+};
+t_player	*player_new(void *x);
+void		player_up(void);
+void		player_down(void);
+void		player_left(void);
+void		player_right(void);
+t_img		*img_new(const char *name, void *x);
+void		exit_open(void);
+void		exit_close(void);
 #endif
