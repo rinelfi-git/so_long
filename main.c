@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:42:12 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 22:15:07 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:30:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	handle_key(int keysim, t_frame *frame)
 	player_locate(map, locations);
 	if (locations[0] == -1 && locations[1] == -1)
 		return (frame_close(frame));
-	if (keysim == XK_z)
+	if (keysim == XK_w)
 		player_up(sprites, map);
 	else if (keysim == XK_d)
 		player_right(sprites, map);
 	else if (keysim == XK_s)
 		player_down(sprites, map);
-	else if (keysim == XK_q)
+	else if (keysim == XK_a)
 		player_left(sprites, map);
 	frame_repaint(frame, map, sprites);
 	return (0);
