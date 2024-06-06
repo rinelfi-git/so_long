@@ -9,6 +9,7 @@ SRCs		= \
 	srcs.d/player_move.c \
 	srcs.d/player_new.c \
 	srcs.d/open_door.c \
+	srcs.d/player_locate.c \
 	srcs.d/sprites_init.c \
 	utils.d/frame_close.c \
 	utils.d/frame_create.c \

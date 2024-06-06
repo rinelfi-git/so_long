@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:33:58 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 16:25:50 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 21:16:31 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,5 @@ void		player_down(t_sprites *sprites, t_map *map);
 void		player_left(t_sprites *sprites, t_map *map);
 void		player_right(t_sprites *sprites, t_map *map);
 void		open_door(t_sprites *sprites, t_map *map);
+void		player_locate(t_map *map, int *locations);
 #endif

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 15:26:28 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 16:37:44 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:53:26 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	exit_destruct(t_exit *self, void *x)
 {
 	int	i;
-	
+
 	i = -1;
 	while (++i < 6)
 		self->img[i]->destruct(self->img[i], x);

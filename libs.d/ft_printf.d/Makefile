@@ -12,7 +12,6 @@ SOURCES		=	ft_printf.c \
 				ft_printhex.c \
 				ft_printstr.c
 OBJECTS		=	$(SOURCES:.c=.o)
-BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 
 all					: $(NAME)
 
@@ -24,7 +23,6 @@ $(NAME)				: $(HEADER) $(OBJECTS) $(LIBS)
 
 clean 				:
 	$(DEL) $(OBJECTS)
-	$(DEL) $(BONUS_OBJ)
 
 fclean				: clean
 	$(DEL) $(NAME)

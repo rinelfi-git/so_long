@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:29:08 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 15:20:55 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:53:37 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static void img_free(t_img *img, void *x)
+static void	img_free(t_img *img, void *x)
 {
 	free(img->path);
 	mlx_destroy_image(x, img->img);

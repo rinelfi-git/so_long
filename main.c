@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:42:12 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 19:56:41 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 21:26:55 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	handle_key(int keysim, t_frame *frame)
 {
 	t_map		*map;
 	t_sprites	*sprites;
+	int			locations[2];
 
+	locations[0] = 0;
+	locations[1] = 0;
 	if (keysim == XK_Escape)
 		return (frame_close(frame));
 	map = (t_map *)node_get(frame->components, 0);
@@ -33,6 +36,9 @@ int	handle_key(int keysim, t_frame *frame)
 		player_down(sprites, map);
 	else if (keysim == XK_q)
 		player_left(sprites, map);
+	player_locate(map, locations);
+	if (locations[0] == -1 && locations[1] == -1)
+		return (frame_close(frame));
 	frame_repaint(frame, map, sprites);
 	return (0);
 }
