@@ -13,10 +13,10 @@ SRCs = main.c \
 	   libs.d/gnl.d/get_next_line_utils.c \
 	   libs.d/gnl.d/get_next_line.c
 OBJs = $(SRCs:.c=.o)
-MLX_A = ./libs.s/mlx.d/libmlx.a
-PRINTF_A = ./libs.s/ft_printf.d/libftprintf.a
-VECTOR_A = ./libs.s/vector.d/libvector.a
-LIBFT_A = ./libs.s/libft.d/libft.a
+MLX_A = ./libs.d/mlx.d/libmlx.a
+PRINTF_A = ./libs.d/ft_printf.d/libftprintf.a
+VECTOR_A = ./libs.d/vector.d/libvector.a
+LIBFT_A = ./libs.d/libft.d/libft.a
 INCLUDES = -I./libs.d/ft_printf.d \
 			-I./libs.d/gnl.d \
 			-I./libs.d/libft.d \
@@ -30,7 +30,7 @@ LIBS = -L./libs.d/mlx.d -lmlx \
 	-L/usr/lib -lXext -lX11 -lm -lz
 
 all : $(NAME)
-$(NAME) : main.c $(MLX_A) $(PRINTF_A) $(VECTOR_A) $(LIBFT_A) $(OBJs)
+$(NAME) : $(MLX_A) $(PRINTF_A) $(VECTOR_A) $(LIBFT_A) $(OBJs)
 	$(CC) $(CCARG) $(OBJs) $(LIBS) $(INCLUDES) -o $(NAME)
 $(MLX_A) :
 	make -C ./libs.d/mlx.d
