@@ -1,11 +1,13 @@
 {
 	"files.associations": {
-		"*.php": "php",
+		"get_next_line.h": "c",
+		"vector.h": "c",
 		"so_long.h": "c",
+		"window_manager.h": "c",
+		"libft.h": "c",
 		"ft_printf.h": "c",
 		"stdlib.h": "c",
 		"mlx.h": "c",
-		"window_manager.h": "c",
 		"keysym.h": "c",
 		"keysymdef.h": "c"
 	}

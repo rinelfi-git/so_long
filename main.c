@@ -6,27 +6,50 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:42:12 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/04 21:17:26 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:51:08 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "window_manager.h"
+#include "ft_printf.h"
 #include <X11/keysym.h>
+#include <fcntl.h>
 
 int	handle_key(int keysim, t_frame *frame)
 {
+	t_map		*map;
+	t_sprites	*sprites;
+
 	if (keysim == XK_Escape)
 		return (frame_close(frame));
+	map = (t_map *)node_get(frame->components, 0);
+	sprites = (t_sprites *)node_get(frame->components, 1);
+	if (keysim == XK_w)
+		player_up(sprites->player, map);
+	else if (keysim == XK_d)
+		player_right(sprites->player, map);
+	else if (keysim == XK_s)
+		player_down(sprites->player, map);
+	else if (keysim == XK_a)
+		player_left(sprites->player, map);
+	paint2D(frame, map, sprites);
 	return (0);
 }
 
 int	main(void)
 {
-	t_frame	*frame;
+	t_frame		*frame;
+	t_map		*map;
+	t_sprites	*sprites;
 
 	frame = frame_create();
-	frame->display = mlx_new_window(frame->x, 800, 640, "So long");
+	map = map_new(open("./assets.d/map.d/correct.ber", O_RDONLY));
+	sprites = sprites_init(frame->x);
+	vec_add(frame->components, (t_node *) map);
+	vec_add(frame->components, (t_node *) sprites);
+	frame->display = mlx_new_window(frame->x,
+		TILE_WIDTH * map->width, TILE_HEIGHT * map->height, "So long");
 	mlx_hook(frame->display, ON_DESTROY, 0L, frame_close, frame);
 	mlx_key_hook(frame->display, handle_key, frame);
 	mlx_loop(frame->x);

@@ -6,29 +6,89 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:52:49 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/04 18:05:37 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:52:08 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "ft_printf.h"
 
-void	player_up(void)
+static void	get_player_coordinate(t_map *map, int *x, int *y)
 {
-	ft_printstr("GOING UP\n");
+	*y = 0;
+	while (*y < map->height)
+	{
+		*x = 0;
+		while (*x < map->width)
+		{
+			if (map->data[*y][*x] == 'P')
+				return ;
+			(*x)++;
+		}
+		(*y)++;
+	}
 }
 
-void	player_down(void)
+void	player_up(t_player *player, t_map *map)
 {
-	ft_printstr("GOING DOWN\n");
+	int	x;
+	int	y;
+
+	get_player_coordinate(map, &x, &y);
+	if (map->data[y - 1][x] == '0' || map->data[y - 1][x] == 'C')
+	{
+		map->data[y - 1][x] = 'P';
+		map->data[y][x] = '0';
+		player->move++;
+		player->position = 0;
+		ft_printf("Mouvement %d\n", player->move);
+	}
 }
 
-void	player_left(void)
+void	player_down(t_player *player, t_map *map)
 {
-	ft_printstr("GOING LEFT\n");
+	int	x;
+	int	y;
+
+	get_player_coordinate(map, &x, &y);
+	if (map->data[y + 1][x] == '0' || map->data[y + 1][x] == 'C')
+	{
+		map->data[y + 1][x] = 'P';
+		map->data[y][x] = '0';
+		player->move++;
+		player->position = 2;
+		ft_printf("Mouvement %d\n", player->move);
+	}
 }
 
-void	player_right(void)
+void	player_left(t_player *player, t_map *map)
 {
-	ft_printstr("GOING RIGHT\n");
+	int	x;
+	int	y;
+
+	get_player_coordinate(map, &x, &y);
+	if (map->data[y][x - 1] == '0' || map->data[y][x - 1] == 'C')
+	{
+		map->data[y][x - 1] = 'P';
+		map->data[y][x] = '0';
+		player->move++;
+		player->position = 3;
+		ft_printf("Mouvement %d\n", player->move);
+	}
+}
+
+void	player_right(t_player *player, t_map *map)
+{
+	int	x;
+	int	y;
+
+	get_player_coordinate(map, &x, &y);
+	if (map->data[y][x + 1] == '0' || map->data[y][x + 1] == 'C')
+	{
+		map->data[y][x + 1] = 'P';
+		map->data[y][x] = '0';
+		player->move++;
+		player->position = 1;
+		ft_printf("Mouvement %d\n", player->move);
+	}
 }

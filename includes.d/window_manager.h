@@ -6,18 +6,21 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 18:08:46 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/04 21:14:44 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:12:41 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WINDOW_MANAGER_H
 # define WINDOW_MANAGER_H
+# include "so_long.h"
+# include "vector.h"
 
 typedef struct s_frame	t_frame;
 struct s_frame
 {
-	void	*x;
-	void	*display;
+	void		*x;
+	void		*display;
+	t_vector	*components;
 };
 enum e_xevent
 {
@@ -25,4 +28,5 @@ enum e_xevent
 };
 t_frame	*frame_create(void);
 int		frame_close(t_frame *self);
+void	paint2D(t_frame *self, t_map *map, t_sprites *sprites);
 #endif
