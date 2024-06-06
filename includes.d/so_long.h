@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:33:58 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 15:20:51 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:25:50 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ struct s_player
 	t_img	*img[4];
 	int		position;
 	int		move;
+	int		can_go;
 	void	(*destruct)(t_player *, void *);
 };
 struct s_exit
 {
 	t_img	*img[6];
 	int		position;
-	void	(*destruct)(t_player *, void *);
+	void	(*destruct)(t_exit *, void *);
 };
 struct s_sprites
 {
@@ -68,11 +69,10 @@ t_player	*player_new(void *x);
 t_exit		*exit_new(void *x);
 t_map		*map_new(int fd);
 t_sprites	*sprites_init(void *x);
-void		player_up(t_player *player, t_map *map);
-void		player_down(t_player *player, t_map *map);
-void		player_left(t_player *player, t_map *map);
-void		player_right(t_player *player, t_map *map);
 t_img		*img_new(const char *name, void *x);
-void		exit_open(void);
-void		exit_close(void);
+void		player_up(t_sprites *sprites, t_map *map);
+void		player_down(t_sprites *sprites, t_map *map);
+void		player_left(t_sprites *sprites, t_map *map);
+void		player_right(t_sprites *sprites, t_map *map);
+void		open_door(t_sprites *sprites, t_map *map);
 #endif

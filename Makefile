@@ -1,23 +1,25 @@
-CC = cc
-CCARG = -Werror -Wextra -Wall
-NAME = so_long
-SRCs = main.c \
-       srcs.d/img_new.c \
-       srcs.d/map_new.c \
-       srcs.d/player_move.c \
-       srcs.d/player_new.c \
-       srcs.d/sprites_init.c \
-	   utils.d/frame_close.c \
-	   utils.d/frame_create.c \
-	   utils.d/paint2D.c \
-	   libs.d/gnl.d/get_next_line_utils.c \
-	   libs.d/gnl.d/get_next_line.c
-OBJs = $(SRCs:.c=.o)
-MLX_A = ./libs.d/mlx.d/libmlx.a
-PRINTF_A = ./libs.d/ft_printf.d/libftprintf.a
-VECTOR_A = ./libs.d/vector.d/libvector.a
-LIBFT_A = ./libs.d/libft.d/libft.a
-INCLUDES = -I./libs.d/ft_printf.d \
+CC		= cc
+CCARG		= -Werror -Wextra -Wall
+NAME		= so_long
+SRCs		= main.c \
+		srcs.d/exit_new.c \
+		srcs.d/img_new.c \
+		srcs.d/map_new.c \
+		srcs.d/player_move.c \
+		srcs.d/player_new.c \
+		srcs.d/open_door.c \
+		srcs.d/sprites_init.c \
+		utils.d/frame_close.c \
+		utils.d/frame_create.c \
+		utils.d/paint2D.c \
+		libs.d/gnl.d/get_next_line_utils.c \
+		libs.d/gnl.d/get_next_line.c
+OBJs		= $(SRCs:.c=.o)
+MLX_A		= ./libs.d/mlx.d/libmlx.a
+PRINTF_A	= ./libs.d/ft_printf.d/libftprintf.a
+VECTOR_A	= ./libs.d/vector.d/libvector.a
+LIBFT_A		= ./libs.d/libft.d/libft.a
+INCLUDES	= -I./libs.d/ft_printf.d \
 			-I./libs.d/gnl.d \
 			-I./libs.d/libft.d \
 			-I./libs.d/mlx.d \

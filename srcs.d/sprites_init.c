@@ -19,9 +19,9 @@ static void	sprites_destruct(t_node *self)
 	t_sprites	*cast;
 
 	cast = (t_sprites *)self;
-	img_free(cast->wall, cast->x);
-	img_free(cast->floor, cast->x);
-	img_free(cast->collectible, cast->x);
+	cast->wall->destruct(cast->wall, cast->x);
+	cast->floor->destruct(cast->floor, cast->x);
+	cast->collectible->destruct(cast->collectible, cast->x);
 	cast->player->destruct(cast->player, cast->x);
 	cast->exit->destruct(cast->exit, cast->x);
 	free(cast);

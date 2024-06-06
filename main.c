@@ -26,13 +26,13 @@ int	handle_key(int keysim, t_frame *frame)
 	map = (t_map *)node_get(frame->components, 0);
 	sprites = (t_sprites *)node_get(frame->components, 1);
 	if (keysim == XK_w)
-		player_up(sprites->player, map);
+		player_up(sprites, map);
 	else if (keysim == XK_d)
-		player_right(sprites->player, map);
+		player_right(sprites, map);
 	else if (keysim == XK_s)
-		player_down(sprites->player, map);
+		player_down(sprites, map);
 	else if (keysim == XK_a)
-		player_left(sprites->player, map);
+		player_left(sprites, map);
 	paint2D(frame, map, sprites);
 	return (0);
 }
@@ -50,6 +50,7 @@ int	main(void)
 	vec_add(frame->components, (t_node *) sprites);
 	frame->display = mlx_new_window(frame->x,
 		TILE_WIDTH * map->width, TILE_HEIGHT * map->height, "So long");
+	paint2D(frame, map, sprites);
 	mlx_hook(frame->display, ON_DESTROY, 0L, frame_close, frame);
 	mlx_key_hook(frame->display, handle_key, frame);
 	mlx_loop(frame->x);

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:48:13 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 14:50:31 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:37:30 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	paint2D(t_frame *self, t_map *map, t_sprites *sprites)
 			else if (map->data[y][x] == 'C')
 				img = sprites->collectible;
 			else if (map->data[y][x] == 'E')
-				img = sprites->exit_close;
+				img = sprites->exit->img[sprites->exit->position];
 			render_at(self, img, x, y);
 			x++;
 		}

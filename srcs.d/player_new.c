@@ -32,6 +32,7 @@ t_player	*player_new(void *x)
 	if (!new)
 		return (0);
 	new->move = 0;
+	new->can_go = 0;
 	new->position = 2;
 	new->destruct = destruct;
 	new->img[0] = img_new("mario-w.xpm", x);

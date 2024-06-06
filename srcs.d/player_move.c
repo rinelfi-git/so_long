@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:52:49 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 14:52:08 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:35:49 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,66 +29,86 @@ static void	get_player_coordinate(t_map *map, int *x, int *y)
 	}
 }
 
-void	player_up(t_player *player, t_map *map)
+void	player_up(t_sprites *sprites, t_map *map)
 {
-	int	x;
-	int	y;
+	int			locations[2];
+	char		*chars[2];
 
-	get_player_coordinate(map, &x, &y);
-	if (map->data[y - 1][x] == '0' || map->data[y - 1][x] == 'C')
-	{
-		map->data[y - 1][x] = 'P';
-		map->data[y][x] = '0';
-		player->move++;
-		player->position = 0;
-		ft_printf("Mouvement %d\n", player->move);
-	}
+	get_player_coordinate(map, locations, locations + 1);
+	chars[0] = &map->data[locations[1] - 1][locations[0]];
+	chars[1] = &map->data[locations[1]][locations[0]];
+	if (*chars[0] == '1')
+		return ;
+	if (*chars[0] == 'E' && sprites->player->can_go)
+		sprites->exit->position = 2;
+	else
+		*chars[0] = 'P';
+	*chars[1] = '0';
+	sprites->player->move++;
+	sprites->player->position = 0;
+	open_door(sprites, map);
+	ft_printf("Mouvement %d\n", sprites->player->move);
 }
 
-void	player_down(t_player *player, t_map *map)
+void	player_down(t_sprites *sprites, t_map *map)
 {
-	int	x;
-	int	y;
+	int			locations[2];
+	char		*chars[2];
 
-	get_player_coordinate(map, &x, &y);
-	if (map->data[y + 1][x] == '0' || map->data[y + 1][x] == 'C')
-	{
-		map->data[y + 1][x] = 'P';
-		map->data[y][x] = '0';
-		player->move++;
-		player->position = 2;
-		ft_printf("Mouvement %d\n", player->move);
-	}
+	get_player_coordinate(map, locations, locations + 1);
+	chars[0] = &map->data[locations[1] + 1][locations[0]];
+	chars[1] = &map->data[locations[1]][locations[0]];
+	if (*chars[0] == '1')
+		return ;
+	if (*chars[0] == 'E' && sprites->player->can_go)
+		sprites->exit->position = 4;
+	else
+		*chars[0] = 'P';
+	*chars[1] = '0';
+	sprites->player->move++;
+	sprites->player->position = 2;
+	open_door(sprites, map);
+	ft_printf("Mouvement %d\n", sprites->player->move);
 }
 
-void	player_left(t_player *player, t_map *map)
+void	player_left(t_sprites *sprites, t_map *map)
 {
-	int	x;
-	int	y;
+	int			locations[2];
+	char		*chars[2];
 
-	get_player_coordinate(map, &x, &y);
-	if (map->data[y][x - 1] == '0' || map->data[y][x - 1] == 'C')
-	{
-		map->data[y][x - 1] = 'P';
-		map->data[y][x] = '0';
-		player->move++;
-		player->position = 3;
-		ft_printf("Mouvement %d\n", player->move);
-	}
+	get_player_coordinate(map, locations, locations + 1);
+	chars[0] = &map->data[locations[1]][locations[0] - 1];
+	chars[1] = &map->data[locations[1]][locations[0]];
+	if (*chars[0] == '1')
+		return ;
+	if (*chars[0] == 'E' && sprites->player->can_go)
+		sprites->exit->position = 5;
+	else
+		*chars[0] = 'P';
+	*chars[1] = '0';
+	sprites->player->move++;
+	sprites->player->position = 3;
+	open_door(sprites, map);
+	ft_printf("Mouvement %d\n", sprites->player->move);
 }
 
-void	player_right(t_player *player, t_map *map)
+void	player_right(t_sprites *sprites, t_map *map)
 {
-	int	x;
-	int	y;
+	int			locations[2];
+	char		*chars[2];
 
-	get_player_coordinate(map, &x, &y);
-	if (map->data[y][x + 1] == '0' || map->data[y][x + 1] == 'C')
-	{
-		map->data[y][x + 1] = 'P';
-		map->data[y][x] = '0';
-		player->move++;
-		player->position = 1;
-		ft_printf("Mouvement %d\n", player->move);
-	}
+	get_player_coordinate(map, locations, locations + 1);
+	chars[0] = &map->data[locations[1]][locations[0] + 1];
+	chars[1] = &map->data[locations[1]][locations[0]];
+	if (*chars[0] == '1')
+		return ;
+	if (*chars[0] == 'E' && sprites->player->can_go)
+		sprites->exit->position = 3;
+	else
+		*chars[0] = 'P';
+	*chars[1] = '0';
+	sprites->player->move++;
+	sprites->player->position = 1;
+	open_door(sprites, map);
+	ft_printf("Mouvement %d\n", sprites->player->move);
 }
