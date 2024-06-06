@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paint2D.c                                          :+:      :+:    :+:   */
+/*   frame_repaint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:48:13 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 16:37:30 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:42:48 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	render_at(t_frame *frame, t_img *img, int x, int y)
 		TILE_HEIGHT * y);
 }
 
-void	paint2D(t_frame *self, t_map *map, t_sprites *sprites)
+void	frame_repaint(t_frame *self, t_map *map, t_sprites *sprites)
 {
 	int		x;
 	int		y;
@@ -43,6 +43,7 @@ void	paint2D(t_frame *self, t_map *map, t_sprites *sprites)
 				img = sprites->collectible;
 			else if (map->data[y][x] == 'E')
 				img = sprites->exit->img[sprites->exit->position];
+			render_at(self, sprites->floor, x, y);
 			render_at(self, img, x, y);
 			x++;
 		}

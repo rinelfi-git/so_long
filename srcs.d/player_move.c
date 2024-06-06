@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:52:49 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 16:35:49 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:05:43 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	player_up(t_sprites *sprites, t_map *map)
 	int			locations[2];
 	char		*chars[2];
 
+	locations[0] = 0;
+	locations[1] = 0;
 	get_player_coordinate(map, locations, locations + 1);
 	chars[0] = &map->data[locations[1] - 1][locations[0]];
 	chars[1] = &map->data[locations[1]][locations[0]];
@@ -55,6 +57,8 @@ void	player_down(t_sprites *sprites, t_map *map)
 	int			locations[2];
 	char		*chars[2];
 
+	locations[0] = 0;
+	locations[1] = 0;
 	get_player_coordinate(map, locations, locations + 1);
 	chars[0] = &map->data[locations[1] + 1][locations[0]];
 	chars[1] = &map->data[locations[1]][locations[0]];
@@ -76,6 +80,8 @@ void	player_left(t_sprites *sprites, t_map *map)
 	int			locations[2];
 	char		*chars[2];
 
+	locations[0] = 0;
+	locations[1] = 0;
 	get_player_coordinate(map, locations, locations + 1);
 	chars[0] = &map->data[locations[1]][locations[0] - 1];
 	chars[1] = &map->data[locations[1]][locations[0]];
@@ -97,6 +103,8 @@ void	player_right(t_sprites *sprites, t_map *map)
 	int			locations[2];
 	char		*chars[2];
 
+	locations[0] = 0;
+	locations[1] = 0;
 	get_player_coordinate(map, locations, locations + 1);
 	chars[0] = &map->data[locations[1]][locations[0] + 1];
 	chars[1] = &map->data[locations[1]][locations[0]];
