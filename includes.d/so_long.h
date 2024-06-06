@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:33:58 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 14:41:35 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:20:51 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef struct s_img		t_img;
 typedef struct s_player		t_player;
+typedef struct s_exit		t_exit;
 typedef struct s_sprites	t_sprites;
 typedef struct s_map		t_map;
 typedef struct s_string		t_string;
@@ -26,13 +27,19 @@ struct s_img
 {
 	char	*path;
 	void	*img;
+	void	(*destruct)(t_img *, void *);
 };
 struct s_player
 {
-	t_node	componemt;
 	t_img	*img[4];
 	int		position;
 	int		move;
+	void	(*destruct)(t_player *, void *);
+};
+struct s_exit
+{
+	t_img	*img[6];
+	int		position;
 	void	(*destruct)(t_player *, void *);
 };
 struct s_sprites
@@ -43,8 +50,7 @@ struct s_sprites
 	t_img		*floor;
 	t_img		*collectible;
 	t_player	*player;
-	t_img		*exit_close;
-	t_img		*exit_open;
+	t_exit		*exit;
 };
 struct s_map
 {
@@ -59,6 +65,7 @@ struct s_string
 	char	*val;
 };
 t_player	*player_new(void *x);
+t_exit		*exit_new(void *x);
 t_map		*map_new(int fd);
 t_sprites	*sprites_init(void *x);
 void		player_up(t_player *player, t_map *map);
