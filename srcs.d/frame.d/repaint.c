@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:48:13 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 14:21:53 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:28:11 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	render_at(t_frame *frame, t_img *img, int *locations)
 	mlx_put_image_to_window(frame->x,
 		frame->display,
 		img->img,
-		TILE_WIDTH * locations[0],
-		TILE_HEIGHT * locations[1]);
+		TILE_WIDTH * locations[1],
+		TILE_HEIGHT * locations[0]);
 }
 
 void	frame_repaint(t_frame *self)
