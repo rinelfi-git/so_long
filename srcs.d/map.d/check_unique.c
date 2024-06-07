@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:10:01 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 14:41:58 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:31:18 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int	check_unique(t_map *map, t_exception *e, char thing, const char *desc)
 			}
 		}
 	}
-	return (thing_exists);
+	if (!thing_exists)
+		return (write_msg(e, desc));
+	return (1);
 }
