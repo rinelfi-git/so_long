@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frame_repaint.c                                    :+:      :+:    :+:   */
+/*   repaint.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:48:13 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 14:08:52 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:21:53 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window_manager.h"
+#include "so_long.h"
 #include "mlx.h"
 
 static void	render_at(t_frame *frame, t_img *img, int *locations)

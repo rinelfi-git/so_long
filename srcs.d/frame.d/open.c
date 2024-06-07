@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frame_open.c                                       :+:      :+:    :+:   */
+/*   open.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 13:56:28 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 14:13:54 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:21:43 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "window_manager.h"
+#include "so_long.h"
 #include "ft_printf.h"
 #include <X11/keysym.h>
 

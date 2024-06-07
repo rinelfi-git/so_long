@@ -15,12 +15,12 @@ SRCs		= \
 	srcs.d/player_new.c \
 	srcs.d/open_door.c \
 	srcs.d/sprites_init.c \
+	srcs.d/frame.d/close.c \
+	srcs.d/frame.d/init.c \
+	srcs.d/frame.d/open.c \
+	srcs.d/frame.d/repaint.c \
 	utils.d/exception.c \
 	utils.d/element_locate.c \
-	utils.d/frame_close.c \
-	utils.d/frame_create.c \
-	utils.d/frame_open.c \
-	utils.d/frame_repaint.c \
 	libs.d/gnl.d/get_next_line_utils.c \
 	libs.d/gnl.d/get_next_line.c
 OBJs		= $(SRCs:.c=.o)
