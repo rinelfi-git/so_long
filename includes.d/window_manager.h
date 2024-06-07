@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 18:08:46 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 19:56:41 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:03:33 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ enum e_xevent
 };
 t_frame	*frame_create(void);
 int		frame_close(t_frame *self);
-void	frame_repaint(t_frame *self, t_map *map, t_sprites *sprites);
+void	frame_repaint(t_frame *self);
+void	frame_open(t_frame *self);
 #endif

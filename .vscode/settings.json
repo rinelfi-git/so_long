@@ -1,9 +1,11 @@
 {
     "files.associations": {
+        "*.php": "php",
         "so_long.h": "c",
         "so_long_map.h": "c",
         "libft.h": "c",
         "stdlib.h": "c",
-        "fcntl.h": "c"
+        "fcntl.h": "c",
+        "window_manager.h": "c"
     }
 }

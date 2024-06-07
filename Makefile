@@ -19,6 +19,7 @@ SRCs		= \
 	utils.d/element_locate.c \
 	utils.d/frame_close.c \
 	utils.d/frame_create.c \
+	utils.d/frame_open.c \
 	utils.d/frame_repaint.c \
 	libs.d/gnl.d/get_next_line_utils.c \
 	libs.d/gnl.d/get_next_line.c

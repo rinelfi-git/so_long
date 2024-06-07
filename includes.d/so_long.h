@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:33:58 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 13:53:28 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:12:39 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_map		*map_new(const char *path);
 t_sprites	*sprites_init(void *x);
 t_img		*img_new(const char *name, void *x);
 t_exception	*ex_new(const char *msg, int exit_code);
-void		ex_free(t_exception *e);
+void		ex_free(t_node *e);
 void		player_up(t_sprites *sprites, t_map *map);
 void		player_down(t_sprites *sprites, t_map *map);
 void		player_left(t_sprites *sprites, t_map *map);
