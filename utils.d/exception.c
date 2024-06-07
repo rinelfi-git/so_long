@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:44:54 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 10:03:53 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:53:57 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_exception	*ex_new(const char *msg, int exit_code)
 	new = (t_exception *)malloc(sizeof(t_exception));
 	if (!new)
 		exit(1);
+	new->component.next = 0;
+	new->component.prev = 0;
 	new->msg = ft_strdup(msg);
 	new->exit_code = exit_code;
 	return (new);

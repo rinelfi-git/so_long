@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:33:58 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 12:28:04 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:53:28 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ struct s_sprites
 };
 struct s_map
 {
-	t_node	componemt;
+	t_node	component;
 	char	*path;
 	int		width;
 	int		height;
@@ -63,6 +63,7 @@ struct s_map
 };
 struct s_exception
 {
+	t_node	component;
 	int		exit_code;
 	char	*msg;
 };

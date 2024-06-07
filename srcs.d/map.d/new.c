@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:55:42 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 13:21:35 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:53:19 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ t_map	*map_new(const char *path)
 	list = vec_new(0);
 	new->path = ft_strdup(path);
 	fd = open(new->path, O_RDONLY);
-	new->componemt.next = 0;
-	new->componemt.prev = 0;
-	new->componemt.destruct = map_destruct;
+	new->component.next = 0;
+	new->component.prev = 0;
+	new->component.destruct = map_destruct;
 	parse_list(fd, list);
 	new->height = vec_size(list);
 	new->data = string_tab_from_list(list);

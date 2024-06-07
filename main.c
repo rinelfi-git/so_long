@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:42:12 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 13:35:22 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:52:54 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	main(int argc, char **argv)
 	sprites = sprites_init(frame->x);
 	vec_add(frame->components, (t_node *) map);
 	vec_add(frame->components, (t_node *) sprites);
+	vec_add(frame->components, (t_node *) ex);
 	frame->display = mlx_new_window(frame->x,
 			TILE_WIDTH * map->width, TILE_HEIGHT * map->height, "./so_long");
 	frame_repaint(frame, map, sprites);
