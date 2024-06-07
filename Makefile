@@ -5,12 +5,18 @@ SRCs		= \
 	main.c \
 	srcs.d/exit_new.c \
 	srcs.d/img_new.c \
-	srcs.d/map_new.c \
+	srcs.d/map.d/check_outlines.c \
+	srcs.d/map.d/check_road.c \
+	srcs.d/map.d/check_shape.c \
+	srcs.d/map.d/check_unique.c \
+	srcs.d/map.d/is_valid.c \
+	srcs.d/map.d/new.c \
 	srcs.d/player_move.c \
 	srcs.d/player_new.c \
 	srcs.d/open_door.c \
-	srcs.d/player_locate.c \
 	srcs.d/sprites_init.c \
+	utils.d/exception.c \
+	utils.d/element_locate.c \
 	utils.d/frame_close.c \
 	utils.d/frame_create.c \
 	utils.d/frame_repaint.c \
@@ -56,7 +62,6 @@ clean:
 	make -C ./libs.d/libft.d clean
 fclean: clean
 	rm -rf $(NAME)
-	make -C ./libs.d/mlx.d fclean
 	make -C ./libs.d/ft_printf.d fclean
 	make -C ./libs.d/vector.d fclean
 	make -C ./libs.d/libft.d fclean

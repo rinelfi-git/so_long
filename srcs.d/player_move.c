@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:52:49 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 21:31:57 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:07:18 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	player_up(t_sprites *sprites, t_map *map)
 
 	locations[0] = 0;
 	locations[1] = 0;
-	player_locate(map, locations);
+	element_locate('P', map, locations);
 	chars[0] = &map->data[locations[1] - 1][locations[0]];
 	chars[1] = &map->data[locations[1]][locations[0]];
 	if (*chars[0] == '1' || (*chars[0] == 'E' && !sprites->player->can_go))
@@ -48,7 +48,7 @@ void	player_down(t_sprites *sprites, t_map *map)
 
 	locations[0] = 0;
 	locations[1] = 0;
-	player_locate(map, locations);
+	element_locate('P', map, locations);
 	chars[0] = &map->data[locations[1] + 1][locations[0]];
 	chars[1] = &map->data[locations[1]][locations[0]];
 	if (*chars[0] == '1' || (*chars[0] == 'E' && !sprites->player->can_go))
@@ -69,7 +69,7 @@ void	player_left(t_sprites *sprites, t_map *map)
 
 	locations[0] = 0;
 	locations[1] = 0;
-	player_locate(map, locations);
+	element_locate('P', map, locations);
 	chars[0] = &map->data[locations[1]][locations[0] - 1];
 	chars[1] = &map->data[locations[1]][locations[0]];
 	if (*chars[0] == '1' || (*chars[0] == 'E' && !sprites->player->can_go))
@@ -90,7 +90,7 @@ void	player_right(t_sprites *sprites, t_map *map)
 
 	locations[0] = 0;
 	locations[1] = 0;
-	player_locate(map, locations);
+	element_locate('P', map, locations);
 	chars[0] = &map->data[locations[1]][locations[0] + 1];
 	chars[1] = &map->data[locations[1]][locations[0]];
 	if (*chars[0] == '1' || (*chars[0] == 'E' && !sprites->player->can_go))

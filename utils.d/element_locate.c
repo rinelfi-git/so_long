@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frame_close.c                                      :+:      :+:    :+:   */
+/*   element_locate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 18:19:52 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 13:38:45 by erijania         ###   ########.fr       */
+/*   Created: 2024/06/06 21:06:26 by erijania          #+#    #+#             */
+/*   Updated: 2024/06/07 10:07:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "window_manager.h"
-#include "mlx.h"
-#include <stdlib.h>
+#include "so_long.h"
 
-int	frame_close(t_frame *self)
+void	element_locate(char e, t_map *map, int *locations)
 {
-	if (!self || !self->x)
-		return (1);
-	vec_destruct(self->components);
-	if (self->display)
-		mlx_destroy_window(self->x, self->display);
-	mlx_destroy_display(self->x);
-	free(self->x);
-	free(self);
-	exit(0);
-	return (0);
+	locations[1] = 0;
+	while (locations[1] < map->height)
+	{
+		locations[0] = 0;
+		while (locations[0] < map->width)
+		{
+			if (map->data[locations[1]][locations[0]] == e)
+				return ;
+			locations[0]++;
+		}
+		locations[1]++;
+	}
+	locations[1] = -1;
+	locations[0] = -1;
 }

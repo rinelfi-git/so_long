@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_new.c                                          :+:      :+:    :+:   */
+/*   new.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:55:42 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 13:45:50 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:21:35 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "get_next_line.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 static void	map_destruct(t_node *self)
 {
@@ -26,6 +28,7 @@ static void	map_destruct(t_node *self)
 	i = -1;
 	while (++i < cast->height)
 		free(cast->data[i]);
+	free(cast->path);
 	free(cast->data);
 	free(cast);
 }
@@ -72,15 +75,18 @@ static char	**string_tab_from_list(t_vector *vect)
 	return (string_tab);
 }
 
-t_map	*map_new(int fd)
+t_map	*map_new(const char *path)
 {
 	t_map		*new;
 	t_vector	*list;
+	int			fd;
 
 	new = (t_map *)malloc(sizeof(t_map));
 	if (!new)
 		exit (1);
 	list = vec_new(0);
+	new->path = ft_strdup(path);
+	fd = open(new->path, O_RDONLY);
 	new->componemt.next = 0;
 	new->componemt.prev = 0;
 	new->componemt.destruct = map_destruct;
@@ -90,5 +96,6 @@ t_map	*map_new(int fd)
 	new->width = 0;
 	if (new->height > 0)
 		new->width = ft_strlen(new->data[0]);
+	close(fd);
 	return (new);
 }

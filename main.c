@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:42:12 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 22:30:22 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:35:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "window_manager.h"
 #include "ft_printf.h"
 #include <X11/keysym.h>
-#include <fcntl.h>
 
 int	handle_key(int keysim, t_frame *frame)
 {
@@ -28,7 +27,7 @@ int	handle_key(int keysim, t_frame *frame)
 		return (frame_close(frame));
 	map = (t_map *)node_get(frame->components, 0);
 	sprites = (t_sprites *)node_get(frame->components, 1);
-	player_locate(map, locations);
+	element_locate('P', map, locations);
 	if (locations[0] == -1 && locations[1] == -1)
 		return (frame_close(frame));
 	if (keysim == XK_w)
@@ -48,16 +47,23 @@ int	main(int argc, char **argv)
 	t_frame		*frame;
 	t_map		*map;
 	t_sprites	*sprites;
+	t_exception	*ex;
 
+	ex = ex_new("Error\n > Number of argument incorrect !\n", 1);
 	if (argc != 2)
-		return (1);
+		return (ex_die(ex));
+	map = map_new(argv[1]);
+	if (!map_is_valid(map, ex))
+	{
+		((t_node *)map)->destruct((t_node *)map);
+		return (ex_die(ex));
+	}
 	frame = frame_create();
-	map = map_new(open(argv[1], O_RDONLY));
 	sprites = sprites_init(frame->x);
 	vec_add(frame->components, (t_node *) map);
 	vec_add(frame->components, (t_node *) sprites);
 	frame->display = mlx_new_window(frame->x,
-			TILE_WIDTH * map->width, TILE_HEIGHT * map->height, "So long");
+			TILE_WIDTH * map->width, TILE_HEIGHT * map->height, "./so_long");
 	frame_repaint(frame, map, sprites);
 	mlx_hook(frame->display, ON_DESTROY, 0L, frame_close, frame);
 	mlx_key_hook(frame->display, handle_key, frame);

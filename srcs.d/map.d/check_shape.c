@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_locate.c                                    :+:      :+:    :+:   */
+/*   check_shape.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/06 21:06:26 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 21:32:55 by erijania         ###   ########.fr       */
+/*   Created: 2024/06/07 11:11:19 by erijania          #+#    #+#             */
+/*   Updated: 2024/06/07 12:30:50 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_map.h"
+#include <stdlib.h>
 
-void	player_locate(t_map *map, int *locations)
+int  check_shape(t_map *map, t_exception *e)
 {
-	locations[1] = 0;
-	while (locations[1] < map->height)
+    int	y;
+	int	length;
+
+	y = 0;
+	length = ft_strlen(map->data[y]);
+	while (y < map->height)
 	{
-		locations[0] = 0;
-		while (locations[0] < map->width)
+		if (length != (int)ft_strlen(map->data[y]))
 		{
-			if (map->data[locations[1]][locations[0]] == 'P')
-				return ;
-			locations[0]++;
+			free(e->msg);
+			e->msg = ft_strdup("Error\n > Map must be a rectangular form\n");
+			return (0);
 		}
-		locations[1]++;
+		y++;
 	}
-	locations[1] = -1;
-	locations[0] = -1;
+	return (1);
 }

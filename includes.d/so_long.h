@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:33:58 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/06 21:16:31 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 12:28:04 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_player		t_player;
 typedef struct s_exit		t_exit;
 typedef struct s_sprites	t_sprites;
 typedef struct s_map		t_map;
-typedef struct s_string		t_string;
+typedef struct s_exception	t_exception;
 struct s_img
 {
 	char	*path;
@@ -56,24 +56,29 @@ struct s_sprites
 struct s_map
 {
 	t_node	componemt;
+	char	*path;
 	int		width;
 	int		height;
 	char	**data;
 };
-struct s_string
+struct s_exception
 {
-	t_node	parent;
-	char	*val;
+	int		exit_code;
+	char	*msg;
 };
 t_player	*player_new(void *x);
 t_exit		*exit_new(void *x);
-t_map		*map_new(int fd);
+t_map		*map_new(const char *path);
 t_sprites	*sprites_init(void *x);
 t_img		*img_new(const char *name, void *x);
+t_exception	*ex_new(const char *msg, int exit_code);
+void		ex_free(t_exception *e);
 void		player_up(t_sprites *sprites, t_map *map);
 void		player_down(t_sprites *sprites, t_map *map);
 void		player_left(t_sprites *sprites, t_map *map);
 void		player_right(t_sprites *sprites, t_map *map);
 void		open_door(t_sprites *sprites, t_map *map);
-void		player_locate(t_map *map, int *locations);
+void		element_locate(char e, t_map *map, int *locations);
+int			map_is_valid(t_map *map, t_exception *e);
+int			ex_die(t_exception *e);
 #endif

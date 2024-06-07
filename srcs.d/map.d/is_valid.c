@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frame_close.c                                      :+:      :+:    :+:   */
+/*   is_valid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 18:19:52 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 13:38:45 by erijania         ###   ########.fr       */
+/*   Created: 2024/06/07 09:40:48 by erijania          #+#    #+#             */
+/*   Updated: 2024/06/07 13:25:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "window_manager.h"
-#include "mlx.h"
-#include <stdlib.h>
+#include "so_long_map.h"
 
-int	frame_close(t_frame *self)
+int map_is_valid(t_map *map, t_exception *ex)
 {
-	if (!self || !self->x)
-		return (1);
-	vec_destruct(self->components);
-	if (self->display)
-		mlx_destroy_window(self->x, self->display);
-	mlx_destroy_display(self->x);
-	free(self->x);
-	free(self);
-	exit(0);
-	return (0);
+    ex->exit_code = 1;
+	if (!check_shape(map, ex))
+		return (0);
+    else if (!check_unique(map, ex, 'P', "player\n"))
+        return (0);
+    else if (!check_unique(map, ex, 'E', "exit\n"))
+        return (0);
+	else if (!check_outlines(map, ex))
+		return (0);
+	else if (!check_road(map, ex))
+		return (0);
+	else
+    return (1);
 }
