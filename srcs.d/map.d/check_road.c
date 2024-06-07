@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:12:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 13:53:19 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:35:10 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,34 +33,34 @@ static void	get_neighbors(t_map *map, const int *xy, char *neighbors)
 		neighbors[3] = map->data[xy[0]][xy[1] - 1];
 }
 
-static void update_neighbors(t_map *map, int *xy, const char *neighbors, int *loop)
+static void	update_neighbors(t_map *map, int *xy, const char *ngbr, int *loop)
 {
 	map->data[xy[0]][xy[1]] = 'x';
-	if (neighbors[0] != 0 && neighbors[0] != '1')
+	if (ngbr[0] != 0 && ngbr[0] != '1')
 		map->data[xy[0] - 1][xy[1]] = 'x';
-	if (neighbors[1] != 0 && neighbors[1] != '1')
+	if (ngbr[1] != 0 && ngbr[1] != '1')
 		map->data[xy[0]][xy[1] + 1] = 'x';
-	if (neighbors[2] != 0 && neighbors[2] != '1')
+	if (ngbr[2] != 0 && ngbr[2] != '1')
 		map->data[xy[0] + 1][xy[1]] = 'x';
-	if (neighbors[3] != 0 && neighbors[3] != '1')
+	if (ngbr[3] != 0 && ngbr[3] != '1')
 		map->data[xy[0]][xy[1] - 1] = 'x';
 	*loop = 1;
 }
 
-static int	need_update_neighbor(t_map *map, int *xy, const char *neighbors)
+static int	need_update_neighbor(t_map *map, int *xy, const char *ngbr)
 {
 	if (map->data[xy[0]][xy[1]] != 'x')
 		return (1);
-	if (neighbors[0] != 0 && neighbors[0] != '1'
+	if (ngbr[0] != 0 && ngbr[0] != '1'
 		&& map->data[xy[0] - 1][xy[1]] != 'x')
 		return (1);
-	if (neighbors[1] != 0 && neighbors[1] != '1'
+	if (ngbr[1] != 0 && ngbr[1] != '1'
 		&& map->data[xy[0]][xy[1] + 1] != 'x')
 		return (1);
-	if (neighbors[2] != 0 && neighbors[2] != '1'
+	if (ngbr[2] != 0 && ngbr[2] != '1'
 		&& map->data[xy[0] + 1][xy[1]] != 'x')
 		return (1);
-	if (neighbors[3] != 0 && neighbors[3] != '1'
+	if (ngbr[3] != 0 && ngbr[3] != '1'
 		&& map->data[xy[0]][xy[1] - 1] != 'x')
 		return (1);
 	return (0);
@@ -82,7 +82,8 @@ static void	transform(t_map *map)
 			xy[1] = -1;
 			while (++xy[1] < map->width)
 			{
-				if (map->data[xy[0]][xy[1]] == 'P' || map->data[xy[0]][xy[1]] == 'x')
+				if (map->data[xy[0]][xy[1]] == 'P'
+					|| map->data[xy[0]][xy[1]] == 'x')
 				{
 					get_neighbors(map, xy, neighbors);
 					if (need_update_neighbor(map, xy, neighbors))
@@ -105,7 +106,8 @@ int	check_road(t_map *map, t_exception *e)
 	{
 		clone->component.destruct((t_node *) clone);
 		free(e->msg);
-		e->msg = ft_strdup("Error\n > Player cannot collect all collectibles\n");
+		e->msg = ft_strjoin("Error\n",
+				"Player cannot collect all collectibles\n");
 		return (0);
 	}
 	element_locate('E', clone, loc);

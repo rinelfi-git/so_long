@@ -6,12 +6,12 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:42:12 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 14:19:41 by erijania         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:30:42 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window_manager.h"
-# include "so_long.h"
+#include "so_long.h"
 
 int	main(int argc, char **argv)
 {
