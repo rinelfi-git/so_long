@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:40:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 14:41:30 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:54:33 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ int	map_is_valid(t_map *map, t_exception *ex)
 	ex->exit_code = 1;
 	if (!check_shape(map, ex))
 		return (0);
-	else if (!check_unique(map, ex, 'P', "player\n"))
+	if (!check_unique(map, ex, 'P', "player\n"))
 		return (0);
-	else if (!check_unique(map, ex, 'E', "exit\n"))
+	if (!check_unique(map, ex, 'E', "exit\n"))
 		return (0);
-	else if (!check_outlines(map, ex))
+	if (!check_outlines(map, ex))
 		return (0);
-	else if (!check_road(map, ex))
+	if (!check_road(map, ex))
 		return (0);
-	else
-		return (1);
+	return (1);
 }

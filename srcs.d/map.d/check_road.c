@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:12:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 14:35:10 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:53:57 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	check_road(t_map *map, t_exception *e)
 		clone->component.destruct((t_node *) clone);
 		free(e->msg);
 		e->msg = ft_strjoin("Error\n",
-				"Player cannot collect all collectibles\n");
+				" > Player cannot collect all collectibles\n");
 		return (0);
 	}
 	element_locate('E', clone, loc);
