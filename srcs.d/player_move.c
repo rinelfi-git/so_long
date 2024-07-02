@@ -6,18 +6,18 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:52:49 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 10:07:18 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:48:32 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "ft_printf.h"
 
-void	player_move(t_sprites *sprites, t_map *map)
+static void	player_move(t_sprites *sprites, t_map *map)
 {
 	sprites->player->move++;
 	open_door(sprites, map);
-	ft_printf("%%> move %d\n", sprites->player->move);
+	ft_printf("$> move %d\n", sprites->player->move);
 }
 
 void	player_up(t_sprites *sprites, t_map *map)
