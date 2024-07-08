@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:54:29 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/08 12:05:25 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:15:28 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	write_msg(t_exception *e)
 int	check_content(t_map *map, t_exception *ex)
 {
 	int	location[2];
-	
+
 	location[0] = -1;
 	while (++location[0] < map->height)
 	{
