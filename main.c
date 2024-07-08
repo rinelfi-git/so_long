@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:42:12 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/02 20:46:00 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/08 09:52:05 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	main(int argc, char *argv[])
 	t_sprites	*sprites;
 	t_exception	*ex;
 
-	ex = ex_new("Error\n > Number of argument incorrect !\n", 1);
 	if (argc != 2)
-		return (ex_die(ex));
+		return (ex_die(ex_new("Error\n > Number of argument incorrect !\n", 1)));
 	map = map_new(argv[1]);
+	ex = ex_new("Error\n > Map file should have [.ber] extension\n", 1);
 	if (!map_is_valid(map, ex))
 	{
 		((t_node *)map)->destruct((t_node *)map);

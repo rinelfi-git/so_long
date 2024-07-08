@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 08:50:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/02/23 23:14:02 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/08 09:39:52 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-int		ft_islower(int c);
-int		ft_isupper(int c);
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);

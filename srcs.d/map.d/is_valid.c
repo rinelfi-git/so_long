@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:40:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/02 20:54:33 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/08 09:37:00 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	map_is_valid(t_map *map, t_exception *ex)
 {
 	ex->exit_code = 1;
+	if (!check_extension(map))
+		return (0);
 	if (!check_shape(map, ex))
 		return (0);
 	if (!check_unique(map, ex, 'P', "player\n"))
