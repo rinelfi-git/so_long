@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:33:58 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 14:12:39 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:49:42 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void		player_left(t_sprites *sprites, t_map *map);
 void		player_right(t_sprites *sprites, t_map *map);
 void		open_door(t_sprites *sprites, t_map *map);
 void		element_locate(char e, t_map *map, int *locations);
-int			map_is_valid(t_map *map, t_exception *e);
+int			map_is_valid(char *path, t_exception *e);
 int			ex_die(t_exception *e);
 #endif

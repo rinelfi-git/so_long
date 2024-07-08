@@ -5,8 +5,10 @@ SRCs		= \
 	main.c \
 	srcs.d/exit_new.c \
 	srcs.d/img_new.c \
+	srcs.d/map.d/check_content.c \
 	srcs.d/map.d/check_extension.c \
 	srcs.d/map.d/check_outlines.c \
+	srcs.d/map.d/check_path.c \
 	srcs.d/map.d/check_road.c \
 	srcs.d/map.d/check_shape.c \
 	srcs.d/map.d/check_unique.c \

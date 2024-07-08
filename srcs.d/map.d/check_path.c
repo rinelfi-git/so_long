@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_shape.c                                      :+:      :+:    :+:   */
+/*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 11:11:19 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/08 11:46:49 by erijania         ###   ########.fr       */
+/*   Created: 2024/07/08 11:38:58 by erijania          #+#    #+#             */
+/*   Updated: 2024/07/08 11:50:14 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_map.h"
+#include "so_long.h"
+#include "libft.h"
+#include <fcntl.h>
+#include <unistd.h>
 #include <stdlib.h>
 
-int	check_shape(t_map *map, t_exception *e)
+int	check_path(const char *path, t_exception *e)
 {
-	int	y;
-	int	length;
+	int		fd;
+	int		valid;
+	char	buffer[1];
 
-	y = 0;
-	length = ft_strlen(map->data[y]);
-	while (y < map->height)
+	fd = open(path, O_RDONLY);
+	valid = read(fd, buffer, 0) >= 0;
+	close(fd);
+	if (!valid)
 	{
-		if (length != (int)ft_strlen(map->data[y]))
-		{
-			free(e->msg);
-			e->msg = ft_strdup("Error\n > Map must be a rectangular form\n");
-			return (0);
-		}
-		y++;
+		free(e->msg);
+		e->msg = ft_strdup("Error\n > Invalid file path\n");
 	}
-	return (1);
+	return (valid);
 }

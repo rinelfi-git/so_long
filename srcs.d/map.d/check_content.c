@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_shape.c                                      :+:      :+:    :+:   */
+/*   check_content.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 11:11:19 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/08 11:46:49 by erijania         ###   ########.fr       */
+/*   Created: 2024/07/08 11:54:29 by erijania          #+#    #+#             */
+/*   Updated: 2024/07/08 12:05:25 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_map.h"
+#include "libft.h"
 #include <stdlib.h>
 
-int	check_shape(t_map *map, t_exception *e)
+static int	write_msg(t_exception *e)
 {
-	int	y;
-	int	length;
+	free(e->msg);
+	e->msg = ft_strdup("Error\n > Authorized contents are 0, 1, C, E, P");
+	return (0);
+}
 
-	y = 0;
-	length = ft_strlen(map->data[y]);
-	while (y < map->height)
+int	check_content(t_map *map, t_exception *ex)
+{
+	int	location[2];
+	
+	location[0] = -1;
+	while (++location[0] < map->height)
 	{
-		if (length != (int)ft_strlen(map->data[y]))
+		location[1] = -1;
+		while (++location[1] < map->width)
 		{
-			free(e->msg);
-			e->msg = ft_strdup("Error\n > Map must be a rectangular form\n");
-			return (0);
+			if (!ft_strrchr("01CEP", map->data[location[0]][location[1]]))
+				return (write_msg(ex));
 		}
-		y++;
 	}
 	return (1);
 }

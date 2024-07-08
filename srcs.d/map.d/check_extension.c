@@ -6,11 +6,11 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:37:33 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/08 09:56:46 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:50:43 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_map.h"
+#include "so_long.h"
 #include "libft.h"
 #include <stdlib.h>
 
@@ -38,7 +38,7 @@ static char	*str_to_lower(char *str)
 	return (str);
 }
 
-int	check_extension(t_map *map)
+int	check_extension(char *path, t_exception *e)
 {
 	char	**splited;
 	char	*extension;
@@ -46,7 +46,7 @@ int	check_extension(t_map *map)
 	int		i;
 
 	extension = 0;
-	splited = ft_split(map->path, '.');
+	splited = ft_split(path, '.');
 	if (split_count(splited) > 0)
 		extension = str_to_lower(splited[split_count(splited) - 1]);
 	valid = extension && ft_strncmp(extension, "ber", 3) == 0;
@@ -54,5 +54,10 @@ int	check_extension(t_map *map)
 	while (splited[i])
 		free(splited[i++]);
 	free(splited);
+	if (!valid)
+	{
+		free(e->msg);
+		e->msg = ft_strdup("Error\n > Map must have [.ber] extension\n");
+	}
 	return (valid);
 }
