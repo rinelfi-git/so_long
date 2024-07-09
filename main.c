@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:42:12 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/08 11:47:02 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:05:51 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 	t_sprites	*sprites;
 	t_exception	*ex;
 
-	ex = ex_new("Error\n > Number of argument incorrect !\n", 1);
+	ex = ex_new("Error\n > Where is the map ?\n", 1);
 	if (argc != 2)
 		return (ex_die(ex));
 	if (!map_is_valid(argv[1], ex))

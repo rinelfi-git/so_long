@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:38:58 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/08 11:50:14 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:06:28 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_path(const char *path, t_exception *e)
 	if (!valid)
 	{
 		free(e->msg);
-		e->msg = ft_strdup("Error\n > Invalid file path\n");
+		e->msg = ft_strdup("Error\n > Give me a real file path.\n");
 	}
 	return (valid);
 }

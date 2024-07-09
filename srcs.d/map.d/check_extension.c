@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:37:33 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/08 11:50:43 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:09:07 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ int	check_extension(char *path, t_exception *e)
 	if (!valid)
 	{
 		free(e->msg);
-		e->msg = ft_strdup("Error\n > Map must have [.ber] extension\n");
+		e->msg = ft_strjoin(
+				"Error\n > ",
+				"I don't recognize this file extension. Only [.ber].\n"
+				);
 	}
 	return (valid);
 }
