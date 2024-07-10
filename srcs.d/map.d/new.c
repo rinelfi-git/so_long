@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:55:42 by erijania          #+#    #+#             */
-/*   Updated: 2024/06/07 13:53:19 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:11:04 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	parse_list(int fd, t_vector *vect)
 	char		*str;
 
 	str = get_next_line(fd);
-	while (str)
+	while (str && ft_strlen(str))
 	{
 		string = str_new(str);
 		free(str);
@@ -52,6 +52,7 @@ static void	parse_list(int fd, t_vector *vect)
 		vec_add(vect, (t_node *)string);
 		str = get_next_line(fd);
 	}
+	close(fd);
 	free(str);
 }
 
