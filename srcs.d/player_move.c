@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:52:49 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/02 20:48:32 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/11 10:59:23 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	player_up(t_sprites *sprites, t_map *map)
 	element_locate('P', map, locations);
 	chars[0] = &map->data[locations[1] - 1][locations[0]];
 	chars[1] = &map->data[locations[1]][locations[0]];
+	sprites->player->position = 0;
 	if (*chars[0] == '1' || (*chars[0] == 'E' && !sprites->player->can_go))
 		return ;
 	if (*chars[0] == 'E' && sprites->player->can_go)
@@ -37,7 +38,6 @@ void	player_up(t_sprites *sprites, t_map *map)
 	else
 		*chars[0] = 'P';
 	*chars[1] = '0';
-	sprites->player->position = 0;
 	player_move(sprites, map);
 }
 
@@ -51,6 +51,7 @@ void	player_down(t_sprites *sprites, t_map *map)
 	element_locate('P', map, locations);
 	chars[0] = &map->data[locations[1] + 1][locations[0]];
 	chars[1] = &map->data[locations[1]][locations[0]];
+	sprites->player->position = 2;
 	if (*chars[0] == '1' || (*chars[0] == 'E' && !sprites->player->can_go))
 		return ;
 	if (*chars[0] == 'E' && sprites->player->can_go)
@@ -58,7 +59,6 @@ void	player_down(t_sprites *sprites, t_map *map)
 	else
 		*chars[0] = 'P';
 	*chars[1] = '0';
-	sprites->player->position = 2;
 	player_move(sprites, map);
 }
 
@@ -72,6 +72,7 @@ void	player_left(t_sprites *sprites, t_map *map)
 	element_locate('P', map, locations);
 	chars[0] = &map->data[locations[1]][locations[0] - 1];
 	chars[1] = &map->data[locations[1]][locations[0]];
+	sprites->player->position = 3;
 	if (*chars[0] == '1' || (*chars[0] == 'E' && !sprites->player->can_go))
 		return ;
 	if (*chars[0] == 'E' && sprites->player->can_go)
@@ -79,7 +80,6 @@ void	player_left(t_sprites *sprites, t_map *map)
 	else
 		*chars[0] = 'P';
 	*chars[1] = '0';
-	sprites->player->position = 3;
 	player_move(sprites, map);
 }
 
@@ -93,6 +93,7 @@ void	player_right(t_sprites *sprites, t_map *map)
 	element_locate('P', map, locations);
 	chars[0] = &map->data[locations[1]][locations[0] + 1];
 	chars[1] = &map->data[locations[1]][locations[0]];
+	sprites->player->position = 1;
 	if (*chars[0] == '1' || (*chars[0] == 'E' && !sprites->player->can_go))
 		return ;
 	if (*chars[0] == 'E' && sprites->player->can_go)
@@ -100,6 +101,5 @@ void	player_right(t_sprites *sprites, t_map *map)
 	else
 		*chars[0] = 'P';
 	*chars[1] = '0';
-	sprites->player->position = 1;
 	player_move(sprites, map);
 }
