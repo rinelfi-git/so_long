@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:42:12 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/11 11:16:51 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:26:02 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char *argv[])
 		return (ex_die(ex_new("Error\n > Where is the map ?\n", 1)));
 	if (argc > 2)
 		return (ex_die(ex_new("Error\n > Only the map please.\n", 1)));
-	ex = ex_new(0, 1);
+	ex = ex_new("", 1);
 	if (!map_is_valid(argv[1], ex))
 		return (ex_die(ex));
 	map = map_new(argv[1]);

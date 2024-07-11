@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:54:29 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/09 09:20:32 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:29:02 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,12 @@
 #include <stdlib.h>
 #define TEMP_STR 29
 
-static int	write_msg(t_exception *e, char c)
+static int	write_msg(t_exception *e)
 {
-	char	str[TEMP_STR];
-
-	ft_strlcpy(str, "And 'X' is not one of them.\n", TEMP_STR);
-	str[5] = c;
 	free(e->msg);
 	e->msg = ft_strjoin(
 			"Error\n > Authorized contents are 0, 1, C, E, P. ",
-			str
+			"And your map contains a weird flag.\n"
 			);
 	return (0);
 }
@@ -40,7 +36,7 @@ int	check_content(t_map *map, t_exception *ex)
 		while (++location[1] < map->width)
 		{
 			if (!ft_strrchr("01CEP", map->data[location[0]][location[1]]))
-				return (write_msg(ex, map->data[location[0]][location[1]]));
+				return (write_msg(ex));
 		}
 	}
 	return (1);

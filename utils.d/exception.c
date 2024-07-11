@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:44:54 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/11 11:19:51 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:25:53 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ t_exception	*ex_new(const char *msg, int exit_code)
 	new->component.next = 0;
 	new->component.prev = 0;
 	new->component.destruct = ex_free;
-	if (msg)
-		new->msg = ft_strdup(msg);
+	new->msg = ft_strdup(msg);
 	new->exit_code = exit_code;
 	return (new);
 }
