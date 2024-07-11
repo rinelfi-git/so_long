@@ -57,7 +57,7 @@ $(VECTOR_A) :
 $(LIBFT_A) :
 	make -C ./libs.d/libft.d
 %.o: %.c
-	$(CC) $(CCARG) $(INCLUDES) -O3 -c $< -o $@
+	$(CC) $(CCARG) $(INCLUDES) -c $< -o $@
 clean:
 	rm -rf $(OBJs)
 	make -C ./libs.d/mlx.d clean
