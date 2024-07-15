@@ -6,92 +6,42 @@
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:12:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/02 20:53:57 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/15 11:13:32 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_map.h"
 #include <stdlib.h>
 
-static void	get_neighbors(t_map *map, const int *xy, char *neighbors)
+static void	fill(t_map *map, int y, int x)
 {
-	if (xy[0] == 0)
-		neighbors[0] = 0;
-	else
-		neighbors[0] = map->data[xy[0] - 1][xy[1]];
-	if (xy[1] == map->width - 1)
-		neighbors[1] = 0;
-	else
-		neighbors[1] = map->data[xy[0]][xy[1] + 1];
-	if (xy[0] == map->height - 1)
-		neighbors[2] = 0;
-	else
-		neighbors[2] = map->data[xy[0] + 1][xy[1]];
-	if (xy[1] == 0)
-		neighbors[3] = 0;
-	else
-		neighbors[3] = map->data[xy[0]][xy[1] - 1];
-}
+	char	*c;
+	int		yx[2];
 
-static void	update_neighbors(t_map *map, int *xy, const char *ngbr, int *loop)
-{
-	map->data[xy[0]][xy[1]] = 'x';
-	if (ngbr[0] != 0 && ngbr[0] != '1')
-		map->data[xy[0] - 1][xy[1]] = 'x';
-	if (ngbr[1] != 0 && ngbr[1] != '1')
-		map->data[xy[0]][xy[1] + 1] = 'x';
-	if (ngbr[2] != 0 && ngbr[2] != '1')
-		map->data[xy[0] + 1][xy[1]] = 'x';
-	if (ngbr[3] != 0 && ngbr[3] != '1')
-		map->data[xy[0]][xy[1] - 1] = 'x';
-	*loop = 1;
-}
-
-static int	need_update_neighbor(t_map *map, int *xy, const char *ngbr)
-{
-	if (map->data[xy[0]][xy[1]] != 'x')
-		return (1);
-	if (ngbr[0] != 0 && ngbr[0] != '1'
-		&& map->data[xy[0] - 1][xy[1]] != 'x')
-		return (1);
-	if (ngbr[1] != 0 && ngbr[1] != '1'
-		&& map->data[xy[0]][xy[1] + 1] != 'x')
-		return (1);
-	if (ngbr[2] != 0 && ngbr[2] != '1'
-		&& map->data[xy[0] + 1][xy[1]] != 'x')
-		return (1);
-	if (ngbr[3] != 0 && ngbr[3] != '1'
-		&& map->data[xy[0]][xy[1] - 1] != 'x')
-		return (1);
-	return (0);
+	if (y < 1 || y >= map->height - 1 || x < 1 || x >= map->width - 1)
+		return ;
+	c = &map->data[y][x];
+	element_locate('C', map, yx);
+	if (*c == 'x' || *c == '1' || (*c == 'E' && yx[0] > 0 && yx[1] > 0))
+		return ;
+	else
+	{
+		*c = 'x';
+		fill(map, y - 1, x);
+		fill(map, y, x - 1);
+		fill(map, y, x + 1);
+		fill(map, y + 1, x);
+	}
 }
 
 static void	transform(t_map *map)
 {
 	int		xy[2];
-	int		loop;
-	char	neighbors[4];
 
-	loop = 1;
-	while (loop)
-	{
-		loop = 0;
-		xy[0] = -1;
-		while (++xy[0] < map->height)
-		{
-			xy[1] = -1;
-			while (++xy[1] < map->width)
-			{
-				if (map->data[xy[0]][xy[1]] == 'P'
-					|| map->data[xy[0]][xy[1]] == 'x')
-				{
-					get_neighbors(map, xy, neighbors);
-					if (need_update_neighbor(map, xy, neighbors))
-						update_neighbors(map, xy, neighbors, &loop);
-				}
-			}
-		}
-	}
+	element_locate('P', map, xy);
+	fill(map, xy[1], xy[0]);
+	element_locate('E', map, xy);
+	fill(map, xy[1], xy[0]);
 }
 
 int	check_road(t_map *map, t_exception *e)
